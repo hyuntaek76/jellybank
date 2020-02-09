@@ -1,0 +1,278 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load imagekit %}
+
+{% block content %}
+    <div class="col-12 col-lg-8">
+                    <div class="post-content-area mb-50">
+                        {% for category in categorys %}
+                            <!-- Catagory Area -->
+                            {% if category.id == 1 %}
+
+                                <div class="world-catagory-area">
+                                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                    <a href="{% url "blog:post_list" category.category_name %}"><li class="title">{{ category.category_name }}</li></a>
+
+                                </ul>
+
+                                <div class="tab-content" id="myTabContent">
+
+                                    <div class="tab-pane fade show active" id="world-tab-1" role="tabpanel" aria-labelledby="tab1">
+                                        <div class="row">
+                                            <div class="col-12 col-md-6">
+                                                <div class="world-catagory-slider owl-carousel fadeInUpBig" data-wow-delay="0.1s">
+                                                <!-- 큰 사이즈 포스팅 3번 반복한다. -->
+                                                    {% for post in category.post_set.all|slice:"0:3" %}
+                                                        <div class="single-blog-post">
+                                                        <!-- Post Thumbnail -->
+                                                        <div class="post-thumbnail">
+                                                            {% if post.photo %}
+                                                                {% thumbnail "290x158" post.photo as thumb %}
+                                                                <a href="{% url "blog:post_detail" post.id post.slug %}">
+                                                                    <img src="{{ thumb.url }}" alt="">
+                                                                </a>
+                                                            {% else %}
+                                                                <a href="{% url "blog:post_detail" post.id post.slug %}">
+                                                                    <img src="{% static 'img/blog-img/b1.jpg' %}" alt="">
+                                                                </a>
+                                                            {% endif %}
+                                                        </div>
+                                                        <!-- Post Content -->
+                                                        <div class="post-content">
+                                                            <a href="{% url "blog:post_detail" post.id post.slug %}">
+                                                                <h5>{{ post.title|truncatechars:50 }}</h5>
+                                                            </a>
+                                                            <a href="{% url "blog:post_detail" post.id post.slug %}" class="headline">
+                                                            <p>{{ post.content|striptags|truncatechars:100 }}</p>
+                                                            </a>
+                                                            <!-- Post Meta -->
+                                                            <div class="post-meta">
+                                                                <p><a href="#" class="post-author">Katy Liu</a> on <a href="#" class="post-date">Sep 29, 2017 at 9:48 am</a></p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {% endfor %}
+                                                </div>
+                                            </div>
+
+                                            <div class="col-12 col-md-6">
+                                                <!-- 제목만 있는 포스팅 4번 반복 -->
+                                                {% for post in category.post_set.all|slice:"3:7" %}
+                                                    <div class="single-blog-post post-style-2 d-flex align-items-center fadeInUpBig" data-wow-delay="0.2s">
+                                                    <!-- Post Thumbnail -->
+                                                    <div class="post-thumbnail">
+                                                        {% if post.photo %}
+                                                            {% thumbnail "95x95" post.photo as thumb %}
+                                                            <a href="{% url "blog:post_detail" post.id post.slug %}">
+                                                                <img src="{{ thumb.url }}" alt="">
+                                                            </a>
+                                                        {% else %}
+                                                            <a href="{% url "blog:post_detail" post.id post.slug %}">
+                                                                <img src="{% static 'img/blog-img/b10.jpg' %}" alt="">
+                                                            </a>
+                                                        {% endif %}
+                                                    </div>
+                                                    <!-- Post Content -->
+                                                    <div class="post-content">
+                                                        <a href="{% url "blog:post_detail" post.id post.slug %}" class="headline">
+                                                            <h5>{{ post.title|truncatechars:40 }}</h5>
+                                                        </a>
+                                                        <!-- Post Meta -->
+                                                        <div class="post-meta">
+                                                            <p><a href="#" class="post-author">Katy Liu</a> on <a href="#" class="post-date">Sep 29, 2017 at 9:48 am</a></p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            {% elif category.id == 2 %}
+                            <!-- Catagory Area -->
+                                <div class="world-catagory-area mt-50">
+                            <ul class="nav nav-tabs" id="myTab2" role="tablist">
+                                <a href="{% url "blog:post_list" category.category_name %}"><li class="title">{{ category.category_name }}</li></a>
+                            </ul>
+
+                            <div class="tab-content" id="myTabContent2">
+
+                                <div class="tab-pane fade show active" id="world-tab-10" role="tabpanel" aria-labelledby="tab10">
+                                    <div class="row">
+                                        <!-- 여기서 큰 썸네일 포스트 2번 반 -->
+                                        {% for post in category.post_set.all|slice:"0:2" %}
+                                            <div class="col-12 col-md-6">
+                                            <!-- Single Blog Post -->
+                                                <div class="single-blog-post fadeInUpBig" data-wow-delay="0.2s">
+                                                    <!-- Post Thumbnail -->
+                                                    <div class="post-thumbnail">
+                                                        {% if post.photo %}
+                                                            {% thumbnail "290x158" post.photo as thumb %}
+                                                            <a href="{% url "blog:post_detail" post.id post.slug %}">
+                                                                <img src="{{ thumb.url }}" alt="">
+                                                            </a>
+                                                        {% else %}
+                                                            <a href="{% url "blog:post_detail" post.id post.slug %}">
+                                                                <img src="{% static 'img/blog-img/b2.jpg' %}" alt="">
+                                                            </a>
+                                                        {% endif %}
+                                                    </div>
+                                                    <!-- Post Content -->
+                                                    <div class="post-content">
+                                                        <a href="{% url "blog:post_detail" post.id post.slug %}" class="headline">
+                                                            <h5>{{ post.title|truncatechars:40 }}</h5>
+                                                        </a>
+                                                        <a href="{% url "blog:post_detail" post.id post.slug %}">
+                                                            <p>{{ post.content|truncatechars:100 }}</p>
+                                                        </a>
+                                                        <!-- Post Meta -->
+                                                        <div class="post-meta">
+                                                            <p><a href="#" class="post-author">Katy Liu</a> on <a href="#" class="post-date">Sep 29, 2017 at 9:48 am</a></p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        {% endfor %}
+
+
+                                        <div class="col-12">
+                                            <div class="world-catagory-slider2 owl-carousel fadeInUpBig" data-wow-delay="0.4s">
+                                                <!-- ========= Single Catagory Slide ========= -->
+                                                <div class="single-cata-slide">
+                                                    <div class="row">
+                                                        <!-- 여기서 작은 썸네일(제목만 있는) 포스트 4번 반복 -->
+                                                        {% for post in category.post_set.all|slice:"2:6" %}
+                                                            <div class="col-12 col-md-6">
+                                                            <!-- Single Blog Post -->
+                                                            <div class="single-blog-post post-style-2 d-flex align-items-center mb-1">
+                                                                <!-- Post Thumbnail -->
+                                                                <div class="post-thumbnail">
+                                                                    {% if post.photo %}
+                                                                        {% thumbnail "95x95" post.photo as thumb %}
+                                                                        <a href="{% url "blog:post_detail" post.id post.slug %}">
+                                                                            <img src="{{ thumb.url }}" alt="">
+                                                                        </a>
+                                                                    {% else %}
+                                                                        <a href="{% url "blog:post_detail" post.id post.slug %}">
+                                                                            <img src="{% static 'img/blog-img/b14.jpg' %}" alt="">
+                                                                        </a>
+                                                                    {% endif %}
+                                                                </div>
+                                                                <!-- Post Content -->
+                                                                <div class="post-content">
+                                                                    <a href="{% url "blog:post_detail" post.id post.slug %}" class="headline">
+                                                                        <h5>{{ post.title|truncatechars:40 }}</h5>
+                                                                    </a>
+                                                                    <!-- Post Meta -->
+                                                                    <div class="post-meta">
+                                                                        <p><a href="#" class="post-author">Katy Liu</a> on <a href="#" class="post-date">Sep 29, 2017 at 9:48 am</a></p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        {% endfor %}
+                                                    </div>
+                                                </div>
+                                                <!-- ========= Single Catagory Slide ========= -->
+                                                <div class="single-cata-slide">
+                                                    <div class="row">
+                                                        <!-- 여기서 작은 썸네일(제목만 있는) 포스트 4번 반복 -->
+                                                        {% for post in category.post_set.all|slice:"6:10" %}
+                                                            <div class="col-12 col-md-6">
+                                                            <!-- Single Blog Post -->
+                                                            <div class="single-blog-post post-style-2 d-flex align-items-center mb-1">
+                                                                <!-- Post Thumbnail -->
+                                                                <div class="post-thumbnail">
+                                                                    {% if post.photo %}
+                                                                        {% thumbnail "95x95" post.photo as thumb %}
+                                                                        <a href="{% url "blog:post_detail" post.id post.slug %}">
+                                                                            <img src="{{ thumb.url }}" alt="">
+                                                                        </a>
+                                                                    {% else %}
+                                                                        <a href="{% url "blog:post_detail" post.id post.slug %}">
+                                                                            <img src="{% static 'img/blog-img/b17.jpg' %}" alt="">
+                                                                        </a>
+                                                                    {% endif %}
+                                                                </div>
+                                                                <!-- Post Content -->
+                                                                <div class="post-content">
+                                                                    <a href="{% url "blog:post_detail" post.id post.slug %}" class="headline">
+                                                                        <h5>{{ post.title|truncatechars:40 }}</h5>
+                                                                    </a>
+                                                                    <!-- Post Meta -->
+                                                                    <div class="post-meta">
+                                                                        <p><a href="#" class="post-author">Katy Liu</a> on <a href="#" class="post-date">Sep 29, 2017 at 9:48 am</a></p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        {% endfor %}
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                            {% else %}
+                                <div class="world-catagory-area mt-50">
+                                    <ul class="nav nav-tabs" id="myTab2" role="tablist">
+                                        <a href="{% url "blog:post_list" category.category_name %}"><li class="title">{{ category.category_name }}</li></a>
+                                    </ul>
+
+                                    <div class="tab-content" id="myTabContent2">
+
+                                        <div class="tab-pane fade show active" id="world-tab-10" role="tabpanel" aria-labelledby="tab10">
+                                            <div class="row">
+                                                <!-- 첫번째 큰 포스트 -->
+                                                {% for post in category.post_set.all|slice:"0:5" %}
+                                                    <div class="col-12 col-md-6">
+                                                    <!-- Single Blog Post -->
+                                                    <!-- 첫번째 포스트 -->
+                                                    <div class="single-blog-post fadeInUpBig" data-wow-delay="0.2s">
+                                                        <!-- Post Thumbnail -->
+                                                        <div class="post-thumbnail">
+                                                            {% if post.photo %}
+                                                                {% thumbnail "290x158" post.photo as thumb %}
+                                                                <a href="{% url "blog:post_detail" post.id post.slug %}">
+                                                                    <img src="{{ thumb.url }}" alt="">
+                                                                </a>
+                                                            {% else %}
+                                                                <a href="{% url "blog:post_detail" post.id post.slug %}">
+                                                                    <img src="{% static 'img/blog-img/b2.jpg' %}" alt="">
+                                                                </a>
+                                                            {% endif %}
+                                                        </div>
+                                                        <!-- Post Content -->
+                                                        <div class="post-content">
+                                                            <a href="{% url "blog:post_detail" post.id post.slug %}" class="headline">
+                                                                <h5>{{ post.title|truncatechars:40 }}</h5>
+                                                            </a>
+                                                            <a href="{% url "blog:post_detail" post.id post.slug %}" class="headline">
+                                                                <p>{{ post.content|truncatechars:100 }}</p>
+                                                            </a>
+                                                            <!-- Post Meta -->
+                                                            <div class="post-meta">
+                                                                <p><a href="#" class="post-author">Katy Liu</a> on <a href="#" class="post-date">Sep 29, 2017 at 9:48 am</a></p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+
+                    </div>
+                </div>
+{% endblock %}
+
