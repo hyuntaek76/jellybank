@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load imagekit %}
+{% block top %}
+    <div class="hero-area height-600 bg-img background-overlay" style="background-image: url({% static 'img/blog-img/bg2.jpg' %});">
+        <div class="container h-100">
+            <div class="row h-100 align-items-center justify-content-center">
+                <div class="col-12 col-md-8 col-lg-6">
+                    <div class="single-blog-title text-center">
+                        <!-- Catagory -->
+                        <div class="post-cta"><a href="#">{{ post.category }}</a></div>
+                        <h3>{{ post.title }}</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+{% endblock %}
+{% block content %}
+    <div class="col-12 col-lg-8">
+                    <div class="single-blog-content mb-30">
+                        <!-- Post Meta -->
+                        <div class="post-meta">
+                            <p><a href="#" class="post-author">Katy Liu</a> on <a href="#" class="post-date">Sep 29, 2017 at 9:48 am</a></p>
+                        </div>
+                        <!-- Post Content -->
+                        <div class="post-content">
+                            {{ post.content }}
+                            <ul class="post-tags">
+                                {% if post.tag_set.all %}
+                                    {% for tag in post.tag_set.all %}
+                                        <li><a href="{% url 'blog:tag_post_list' tag.name %}">{{ tag.name }}</a></li>
+                                    {% endfor %}
+                                {% endif %}
+
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="world-catagory-area mb-2">
+                                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                    <li class="title">Related Post</li>
+
+                                </ul>
+                    </div>
+                    <!-- related post 3개 -->
+                    {% for related_post in related_posts %}
+                        <div class="single-blog-post post-style-4 d-flex align-items-center wow fadeInUpBig mb-3" data-wow-delay="0.2s">
+                            <!-- Post Thumbnail -->
+                            <div class="post-thumbnail">
+                                {% if related_post.photo %}
+                                    {% thumbnail "290x200" related_post.photo as thumb %}
+                                    <a href="{% url "blog:post_detail" related_post.id related_post.slug %}">
+                                        <img src="{{ thumb.url }}" alt="">
+                                    </a>
+                                {% else %}
+                                    <a href="{% url "blog:post_detail" related_post.id related_post.slug %}">
+                                        <img src="{% static 'img/blog-img/b18.jpg' %}" alt="">
+                                    </a>
+                                {% endif %}
+                            </div>
+                            <!-- Post Content -->
+                            <div class="post-content">
+                                <a href="{% url "blog:post_detail" related_post.id related_post.slug %}" class="headline">
+                                    <h5>{{ related_post.title|truncatechars:50 }}</h5>
+                                </a>
+                                <a href="{% url "blog:post_detail" related_post.id related_post.slug %}">
+                                    <p>{{ related_post.content|truncatechars:150 }}</p>
+                                </a>
+                                <!-- Post Meta -->
+                                <div class="post-meta">
+                                    <p><a href="#" class="post-author">Katy Liu</a> on <a href="#" class="post-date">Sep 29, 2017 at 9:48 am</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+{% endblock %}

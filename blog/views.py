@@ -23,8 +23,16 @@ def post_list(request):
 def search_post_list(request):
     pass
 
-def post_detail(request):
-    pass
+def post_detail(request, pk, slug):
+    categorys = get_list_or_404(Category.objects.filter(is_publish_ok=True))
+    post = get_object_or_404(Post.objects.prefetch_related('tag_set').filter(id=pk, slug=slug))
+    related_qs = get_list_or_404(Post.objects.filter(category=post.category).exclude(id=pk)[:3])
+    return render(request, 'blog/post_detail.html',{
+        'post': post,
+        'related_posts': related_qs,
+        'categorys' : categorys,
+
+    })
 
 def tag_post_list(request):
     pass
