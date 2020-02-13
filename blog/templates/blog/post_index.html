@@ -3,6 +3,7 @@
 {% load imagekit %}
 
 {% block content %}
+  {{ categorys }}
     <div class="col-12 col-lg-8">
                     <div class="post-content-area mb-50">
                         {% for category in categorys %}
@@ -275,4 +276,3 @@
                     </div>
                 </div>
 {% endblock %}
-
