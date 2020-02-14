@@ -9,10 +9,10 @@ from django.contrib import messages
 def post_index(request):
     print('여기까지 왔따')
     qs = Category.objects.filter(is_publish_ok=True).prefetch_related(Prefetch('post_set', queryset=Post.objects.filter(is_publish_ok=True)))
-    print('여기는 어떨까?')
-    print('qs', qs)
+    hit_posts = Post.objects.all().order_by('hits')[:5]
     return render(request, 'blog/post_index.html',{
         'categorys' : qs,
+        'hit_posts' : hit_posts,
     })
 
 
@@ -25,8 +25,9 @@ def search_post_list(request):
 
 def post_detail(request, pk, slug):
     categorys = get_list_or_404(Category.objects.filter(is_publish_ok=True))
-    post = get_object_or_404(Post.objects.prefetch_related('tag_set').filter(id=pk, slug=slug))
-    related_qs = get_list_or_404(Post.objects.filter(category=post.category).exclude(id=pk)[:3])
+    post = get_object_or_404(Post, id=pk, slug=slug)
+    Post.objects.filter(id=pk, slug=slug).update(hits = post.hits + 1)
+    related_qs = Post.objects.filter(category=post.category).exclude(id=pk)[:3]
     return render(request, 'blog/post_detail.html',{
         'post': post,
         'related_posts': related_qs,

@@ -59,6 +59,7 @@ class Post(models.Model):
     #is_publish_ok = models.CharField(max_length=1, choices=PUBLISH_STATUS_CHOICES, default='d', verbose_name='글공개')
     is_publish_ok = models.BooleanField(choices=PUBLISH_STATUS_CHOICES, default=False, verbose_name='글공개')
     tags = TaggableManager()
+    hits = models.IntegerField(default=0, verbose_name='조회수')
     created_at = models.DateField(auto_now_add=False, default=timezone.now, verbose_name='발행일')
     updated_at = models.DateField(auto_now=True)
 
@@ -77,4 +78,3 @@ class Comment(models.Model):
     message = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-
