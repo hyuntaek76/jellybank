@@ -35,7 +35,7 @@
                                     <h5>{{ post.title|truncatechars:50 }}</h5>
                                 </a>
                                 <a href="{% url "blog:post_detail" post.id post.slug %}">
-                                    <p>{{ post.content|truncatechars:100 }}</p>
+                                    <p>{{ post.content|striptags|safe|truncatechars:100 }}</p>
                                 </a>
                                 <!-- Post Meta -->
                                 <div class="post-meta">

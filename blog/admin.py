@@ -19,7 +19,7 @@ class CategoryAdmin(admin.ModelAdmin):
 class PostAdmin(SummernoteModelAdmin):
     #summernote_fields = '__all__' #('content',)
     summernote_fields = ('content',)
-    list_display=['id','category','title','is_publish_ok','created_at','updated_at']
+    list_display=['id','category','title','is_publish_ok','hits','created_at','updated_at']
     list_display_links = ['title']
     list_filter = ['category','title','is_publish_ok']
     search_fields = ['title', 'content']
