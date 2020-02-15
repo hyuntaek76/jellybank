@@ -5,3 +5,4 @@ django-taggit==1.2.0
 pilkit==2.0
 Pillow==7.0.0
 pymysql
+django-disqus

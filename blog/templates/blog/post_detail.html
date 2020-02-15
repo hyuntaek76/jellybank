@@ -27,15 +27,16 @@
                         <div class="post-content">
                             {{ post.content|safe }}
                             <ul class="post-tags">
-
-
                                     {% for tag in post.tags.all %}
                                         <li><a href="{% url 'blog:tag_post_list' tag.name %}">{{ tag.name }}</a></li>
                                     {% endfor %}
-
-
                             </ul>
                         </div>
+                    </div>
+                    <div class="single-blog-content mb-30">
+                        {% load disqus_tags %}
+                        {% disqus_show_comments %}
+
                     </div>
                     <div class="world-catagory-area mb-2">
                                 <ul class="nav nav-tabs" id="myTab" role="tablist">

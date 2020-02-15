@@ -43,7 +43,12 @@ INSTALLED_APPS = [
     'taggit',
     'django_summernote',
     'imagekit',
+    'disqus',
+    'django.contrib.sites'
 ]
+
+DISQUS_WEBSITE_SHORTNAME = 'jellypapa'
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -136,6 +141,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media',)
+
 
 
 # 썸모노트 설정
