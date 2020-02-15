@@ -4,3 +4,6 @@ __pycache__
 myvenv
 jellybank_key.pem
 venv
+secrets.json
+dev.py
+settings_bak.py
