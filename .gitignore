@@ -7,3 +7,4 @@ venv
 secrets.json
 dev.py
 settings_bak.py
+db.sqlite3
