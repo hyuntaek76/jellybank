@@ -6,3 +6,5 @@ pilkit==2.0
 Pillow==7.0.0
 pymysql
 django-disqus
+requests
+beautifulsoup4

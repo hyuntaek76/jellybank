@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load imagekit %}
+{% block top %}
+    <div class="hero-area height-400 bg-img background-overlay" style="background-image: url({% static 'img/blog-img/bg2.jpg' %});">
+        <div class="container h-100">
+            <div class="row h-100 align-items-center justify-content-center">
+                <div class="col-12 col-md-8 col-lg-6">
+                    <div class="single-blog-title text-center">
+                        <!-- Catagory -->
+                        <div class="post-cta"><a href="{% url "blog:post_list" post.category %}">{{ post.category }}</a></div>
+                        <h3>{{ post.title }}</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block content %}
+    <div class="col-12 col-lg-8">
+                    <div class="single-blog-content mb-30">
+                        <!-- Post Content -->
+                        <div class="post-content">
+                            <p> 죄송합니다.! 서버에러 입니다. 뒤로가기 해주세요.</a>
+                        </div>
+                    </div>
+
+    </div>
+{% endblock %}

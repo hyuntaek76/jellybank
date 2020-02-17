@@ -1,5 +1,4 @@
 """jellybank URL Configuration
-
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/3.0/topics/http/urls/
 Examples:
@@ -17,7 +16,13 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-
+# from django.conf.urls import handler404, handler400, handler500
+#
+#
+# handler404 = 'blog.views.page_not_found_page'
+# handler500 = 'blog.views.server_error_page'
+#
+# django.views.defaults.page_not_found()
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('blog.urls')),

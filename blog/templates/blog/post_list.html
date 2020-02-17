@@ -2,17 +2,30 @@
 {% load static %}
 {% load imagekit %}
 {% block top %}
-    <div class="hero-area height-400 bg-img background-overlay " style="background-image: url({% static 'img/blog-img/bg3.jpg' %});"></div>
+    <!-- <div class="hero-area height-400 bg-img background-overlay " style="background-image: url({% static 'img/blog-img/bg3.jpg' %});"></div> -->
+    <div class="hero-area height-400 bg-img background-overlay" style="background-image: url({% static 'img/blog-img/bg2.jpg' %});">
+        <div class="container h-100">
+            <div class="row h-100 align-items-center justify-content-center">
+                <div class="col-12 col-md-8 col-lg-6">
+                    <div class="single-blog-title text-center">
+                        <!-- Catagory -->
+                        <!-- <div class="post-cta"><a href="">{{ now_category }} 관련글 보기</a></div> -->
+                        <h3>Category : {{ now_category }}</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
 {% block content %}
     <div class="col-12 col-lg-8">
 
-                    <div class="world-catagory-area mb-2">
+                    <!-- <div class="world-catagory-area mb-2">
                                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                                     <li class="title">{{ now_category }} 관련글 보기</li>
 
                                 </ul>
-                    </div>
+                    </div> -->
                     <!-- related post 3개 -->
                     {% for post in category %}
                         <div class="single-blog-post post-style-4 d-flex align-items-center fadeInUpBig mb-3">
@@ -35,7 +48,7 @@
                                     <h5>{{ post.title|truncatechars:50 }}</h5>
                                 </a>
                                 <a href="{% url "blog:post_detail" post.id post.slug %}">
-                                    <p>{{ post.content|truncatechars:100 }}</p>
+                                    <p>{{ post.content|striptags|safe|truncatechars:100 }}</p>
                                 </a>
                                 <!-- Post Meta -->
                                 <div class="post-meta">

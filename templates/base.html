@@ -100,41 +100,17 @@
                     <div class="col-12">
                         <div class="hero-post-slide">
                             <!-- Single Slide -->
-                            <div class="single-slide d-flex align-items-center">
-                                <div class="post-number">
-                                    <p>1</p>
-                                </div>
-                                <div class="post-title">
-                                    <a href="single-blog.html">How Did van Gogh’s Turbulent Mind Depict One of the Most Complex</a>
-                                </div>
-                            </div>
-                            <!-- Single Slide -->
-                            <div class="single-slide d-flex align-items-center">
-                                <div class="post-number">
-                                    <p>2</p>
-                                </div>
-                                <div class="post-title">
-                                    <a href="single-blog.html">How Did van Gogh’s Turbulent Mind Depict One of the Most Complex</a>
-                                </div>
-                            </div>
-                            <!-- Single Slide -->
-                            <div class="single-slide d-flex align-items-center">
-                                <div class="post-number">
-                                    <p>3</p>
-                                </div>
-                                <div class="post-title">
-                                    <a href="single-blog.html">How Did van Gogh’s Turbulent Mind Depict One of the Most Complex</a>
-                                </div>
-                            </div>
-                            <!-- Single Slide -->
-                            <div class="single-slide d-flex align-items-center">
-                                <div class="post-number">
-                                    <p>4</p>
-                                </div>
-                                <div class="post-title">
-                                    <a href="single-blog.html">How Did van Gogh’s Turbulent Mind Depict One of the Most Complex</a>
-                                </div>
-                            </div>
+                            {% for post in hit_posts %}
+                              <div class="single-slide d-flex align-items-center">
+                                  <div class="post-number">
+                                      <p>{{ forloop.counter }}</p>
+                                  </div>
+                                  <div class="post-title">
+                                      <a href="{% url "blog:post_detail" post.id post.slug %}">{{ post.title }}</a>
+                                  </div>
+                              </div>
+                            {% endfor %}
+
                         </div>
                     </div>
                 </div>
@@ -157,45 +133,49 @@
                 <div class="col-12 col-md-8 col-lg-4">
                     <div class="post-sidebar-area wow fadeInUpBig" data-wow-delay="0.2s">
                         <!-- Widget Area -->
-                        <div class="sidebar-widget-area">
+                        <!-- 나중에 여기에다 광고를 넣자 -->
+                        <!-- <div class="sidebar-widget-area">
                             <h5 class="title">About World</h5>
                             <div class="widget-content">
                                 <p>The mango is perfect in that it is always yellow and if it’s not, I don’t want to hear about it. The mango’s only flaw, and it’s a minor one, is the effort it sometimes takes to undress the mango, carve it up in a way that makes sense, and find its way to the mouth.</p>
                             </div>
-                        </div>
+                        </div> -->
                         <!-- Widget Area -->
-                        <div class="sidebar-widget-area">
-                            <h5 class="title">Top Stories</h5>
-                            <div class="widget-content">
-                                <!-- Single Blog Post -->
-                                {% for post in hit_posts %}
-                                  <div class="single-blog-post post-style-2 d-flex align-items-center widget-post">
-                                      <!-- Post Thumbnail -->
-                                      <div class="post-thumbnail">
-                                        {% if post.photo %}
-                                          {% thumbnail "100x100" post.photo as thumb %}
-                                          <a href="{% url "blog:post_detail" post.id post.slug %}">
-                                              <img src="{{ thumb.url }}" alt="">
-                                          </a>
-                                        {% else%}
-                                          <a href="{% url "blog:post_detail" post.id post.slug %}">
-                                            <img src="{% static 'img/blog-img/b11.jpg' %}" alt="">
-                                          </a>
-                                        {% endif %}
-                                      </div>
-                                      <!-- Post Content -->
-                                      <div class="post-content">
-                                          <a href="{% url "blog:post_detail" post.id post.slug %}" class="headline">
-                                              <h5 class="mb-0">{{ post.title|truncatechars:50 }}</h5>
-                                          </a>
-                                      </div>
-                                  </div>
-                                {% endfor %}
+                        {% if hit_posts %}
+                          <div class="sidebar-widget-area">
+                              <h5 class="title">Top Stories</h5>
+                              <div class="widget-content">
+                                  <!-- Single Blog Post -->
+                                  {% for post in hit_posts %}
+                                    <div class="single-blog-post post-style-2 d-flex align-items-center widget-post">
+                                        <!-- Post Thumbnail -->
+                                        <div class="post-thumbnail">
+                                          {% if post.photo %}
+                                            {% thumbnail "100x100" post.photo as thumb %}
+                                            <a href="{% url "blog:post_detail" post.id post.slug %}">
+                                                <img src="{{ thumb.url }}" alt="">
+                                            </a>
+                                          {% else%}
+                                            <a href="{% url "blog:post_detail" post.id post.slug %}">
+                                              <img src="{% static 'img/blog-img/b11.jpg' %}" alt="">
+                                            </a>
+                                          {% endif %}
+                                        </div>
+                                        <!-- Post Content -->
+                                        <div class="post-content">
+                                            <a href="{% url "blog:post_detail" post.id post.slug %}" class="headline">
+                                                <h5 class="mb-0">{{ post.title|truncatechars:50 }}</h5>
+                                            </a>
+                                        </div>
+                                    </div>
+                                  {% endfor %}
 
-                            </div>
-                        </div>
+                              </div>
+                          </div>
+                        {% endif %}
+
                         <!-- Widget Area -->
-                        <div class="sidebar-widget-area">
+                        <!-- <div class="sidebar-widget-area">
                             <h5 class="title">Stay Connected</h5>
                             <div class="widget-content">
                                 <div class="social-area d-flex justify-content-between">
@@ -207,18 +187,19 @@
                                     <a href="#"><i class="fa fa-google"></i></a>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                         <!-- Widget Area -->
-                        <div class="sidebar-widget-area">
+
+                        <!-- <div class="sidebar-widget-area">
                             <h5 class="title">Today’s Pick</h5>
                             <div class="widget-content">
-                                <!-- Single Blog Post -->
+
                                 <div class="single-blog-post todays-pick">
-                                    <!-- Post Thumbnail -->
+
                                     <div class="post-thumbnail">
                                         <img src="img/blog-img/b22.jpg" alt="">
                                     </div>
-                                    <!-- Post Content -->
+
                                     <div class="post-content px-0 pb-0">
                                         <a href="#" class="headline">
                                             <h5>How Did van Gogh’s Turbulent Mind Depict One of the Most Complex Concepts in Physics?</h5>
@@ -226,7 +207,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
