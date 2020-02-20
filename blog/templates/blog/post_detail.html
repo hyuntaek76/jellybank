@@ -1,6 +1,25 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load imagekit %}
+
+{% block meta %}
+<title>젤리파파 | {{ post.title }}</title>
+<meta name="keywords" content="{{ post.meta_keyword }}">
+<meta name="description" content="{{ post.summary }}">
+<meta name="author" content="젤리파파">
+<meta name="robots" content="index,follow" />
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="젤리파파 | {{ post.title }}">
+<meta property="og:description" content="{{ post.summary }}">
+{% if post.photo %}
+    {% thumbnail "290x158" post.photo as thumb %}
+<meta property="og:image" content="{{ thumb.url }}">
+{% endif %}
+<meta property="og:url" content="{{ post.get_absolute_url }}">
+{% endblock %}
+
+
 {% block top %}
     <div class="hero-area height-400 bg-img background-overlay" style="background-image: url({% static 'img/blog-img/bg2.jpg' %});">
         <div class="container h-100">

@@ -27,7 +27,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__fil
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['*.aws.amazon.com', '15.165.136.13','127.0.0.1', '*.jellybank']
 
 
 # Application definition
@@ -48,7 +48,7 @@ INSTALLED_APPS = [
     'storages',
 ]
 
-DISQUS_WEBSITE_SHORTNAME = 'jellypapa'
+DISQUS_WEBSITE_SHORTNAME = 'jellybank'
 SITE_ID = 1
 
 MIDDLEWARE = [
