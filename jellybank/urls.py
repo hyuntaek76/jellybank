@@ -29,5 +29,6 @@ urlpatterns = [
     path('summernote/', include('django_summernote.urls')),
 ]
 
-#if settings.DEBUG:
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+#S3를 통해서 이미지 서빙을 할 것이기 때문에 주석처리를 했음

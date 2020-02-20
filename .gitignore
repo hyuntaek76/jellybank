@@ -8,3 +8,4 @@ secrets.json
 dev.py
 settings_bak.py
 db.sqlite3
+.ipynb_checkpoints

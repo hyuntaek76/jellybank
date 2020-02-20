@@ -27,10 +27,6 @@ DB_HOST = secrets["DB_HOST"]
 #         error_msg = "Set the {0} enviroment variable".format(setting)
 #         raise ImproperlyConfigured(error_msg)
 
-
-
-
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -48,3 +44,21 @@ DATABASES = {
 }
 
 DEBUG = False
+
+
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+MEDIA_URL = '/media/'
+#MEDIA_ROOT = os.path.join(BASE_DIR, 'media',)
+
+# AWS S3
+
+AWS_ACCESS_KEY_ID = secrets["AWS_ACCESS_KEY_ID"]
+AWS_SECRET_ACCESS_KEY = secrets["AWS_SECRET_ACCESS_KEY"]
+AWS_DEFAULT_ACL = secrets["AWS_DEFAULT_ACL"]
+AWS_REGION = secrets["AWS_REGION"]
+AWS_STORAGE_BUCKET_NAME = secrets["AWS_STORAGE_BUCKET_NAME"]
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.%s.amazonaws.com' % (AWS_STORAGE_BUCKET_NAME, AWS_REGION)
+DEFAULT_FILE_STORAGE = 'jellybank.storages.S3DefaultStorage'
+STATICFILES_STORAGE = 'jellybank.storages.S3StaticStorage'
