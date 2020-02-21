@@ -16,19 +16,21 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-# from django.conf.urls import handler404, handler400, handler500
-#
-#
-# handler404 = 'blog.views.page_not_found_page'
-# handler500 = 'blog.views.server_error_page'
-#
-# django.views.defaults.page_not_found()
+from django.conf.urls import (
+    handler400, handler404, handler500
+)
+
+handler404 = 'blog.views.page_not_found_page'
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('blog.urls')),
     path('summernote/', include('django_summernote.urls')),
 ]
 
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+# if settings.DEBUG:
+#    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 #S3를 통해서 이미지 서빙을 할 것이기 때문에 주석처리를 했음
+
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -27,7 +27,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__fil
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-ALLOWED_HOSTS = ['*.aws.amazon.com', '15.165.136.13','127.0.0.1', '*.jellybank']
+ALLOWED_HOSTS = ['.jellybank.co.kr','15.165.136.13','127.0.0.1']
 
 
 # Application definition

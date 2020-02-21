@@ -6,6 +6,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
+from django.template import RequestContext
 
 
 
@@ -73,11 +74,13 @@ def search_post_list(request):
     })
 
 def post_detail(request, pk, slug):
-    categorys = get_list_or_404(Category.objects.filter(is_publish_ok=True))
-    post = get_object_or_404(Post, id=pk, slug=slug)
+    print('post detail 호출')
+    categorys = Category.objects.filter(is_publish_ok=True)
+    post = get_object_or_404(Post, id=pk, slug=slug, is_publish_ok=True)
     Post.objects.filter(id=pk, slug=slug).update(hits = post.hits + 1)
     hit_posts = Post.objects.filter(is_publish_ok=True).order_by('-hits')[:5]
     related_qs = Post.objects.filter(category=post.category, is_publish_ok=True).exclude(id=pk)[:3]
+    print("여기도 호출되나?")
     return render(request, 'blog/post_detail.html',{
         'post': post,
         'related_posts': related_qs,
@@ -230,13 +233,25 @@ def blog_crawling(request, category_id, blog_address):
         'categorys' : categorys
     })
 
-def page_not_found_page(request, exxeption):
-    return render(request, 'blog/404.html', status=404)
+def page_not_found_page(request, exception):
+    
+    categorys = Category.objects.filter(is_publish_ok=True)
+    hit_posts = Post.objects.filter(is_publish_ok=True).order_by('-hits')[:5]
+    post = Category.objects.all()
+    paginator = Paginator(post[0].post_set.filter(is_publish_ok=True), 6)
+    page = request.GET.get('page')
 
+    try:
+        posts = paginator.page(page)
+    except PageNotAnInteger:
+        posts = paginator.page(1)
+    except EmptyPage:
+            posts = paginator.page(paginator.num_pages)
 
+    return render(request, 'blog/404.html', {
+        'category': posts,
+        'page': page,
+        'categorys' : categorys,
+        'hit_posts' : hit_posts,
+    }) 
 
-def server_error_page(request):
-    pass
-    # response = render_to_response('blog/500.html', {}, context_instance=RequestContext(request))
-    # response.status_code = 500
-    # return response
