@@ -2,7 +2,7 @@
 {% load imagekit %}
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 
 <head>
   <!-- Title  -->
@@ -14,19 +14,18 @@
     <link rel="stylesheet" href="{% static 'style.css' %}">
 
     {% block meta %}
-    <title>젤리뱅크 | 재테크, 예금, 적금, 펀드, 연금, IRA, ETF, 주택청약종합저축, 행복주택, 대출 관련 정보 제공</title>
-    <meta name="keywords" content="젤리뱅크, 돈관리, 재테크">
+    <title>젤리파파 | 재테크, 예금, 적금, 펀드, 연금, IRA, ETF, 주택청약종합저축, 행복주택, 대출 관련 정보 제공</title>
+    <meta name="keywords" content="젤리파파, 돈관리, 재테크">
     <meta name="description" content="재테크, 예금, 적금, 펀드, 연금, IRA, ETF, 주택청약종합저축, 행복주택, 대출 관련 정보 제공">
-    <meta name="author" content="젤리뱅크">
+    <meta name="author" content="젤리파파">
     <meta name="robots" content="index,follow" />
 
     <meta property="og:type" content="website">
-    <meta property="og:title" content="젤리뱅크 | 재테크, 예금, 적금, 펀드, 연금, IRA, ETF, 주택청약종합저축, 행복주택, 대출 관련 정보 제공">
+    <meta property="og:title" content="젤리파파 | 재테크, 예금, 적금, 펀드, 연금, IRA, ETF, 주택청약종합저축, 행복주택, 대출 관련 정보 제공">
     <meta property="og:description" content="재테크, 예금, 적금, 펀드, 연금, IRA, ETF, 주택청약종합저축, 행복주택, 대출 관련 정보 제공">
-    <meta property="og:image" content="{% static 'img/blog-img/bg_1.jpg' %}">
+    <meta property="og:image" content="{% static 'img/blog-img/bg1.jpg' %}">
     <meta property="og:url" content="www.jellybank.co.kr">
     {% endblock %}
-
 
 </head>
 
@@ -54,8 +53,8 @@
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#worldNav" aria-controls="worldNav" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                         <!-- Navbar -->
                         <div class="collapse navbar-collapse" id="worldNav">
-                            <ul class="navbar-nav ml-auto">
-                                <li class="nav-item active">
+                            <ul class="navb"ar-nav ml-auto">
+                                <li class="nav-item active>
                                     <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
                                 </li>
                                 <li class="nav-item dropdown">
@@ -96,9 +95,9 @@
         <!-- 지붕의 배경이미지 설정하는 곳  -->
         <div class="hero-slides owl-carousel">
             <!-- Single Slide -->
-            <div class="single-hero-slide bg-img background-overlay" style="background-image: url({% static 'img/blog-img/bg_2.jpg' %});"></div>
+            <div class="single-hero-slide bg-img background-overlay" style="background-image: url({% static 'img/blog-img/bg2.jpg' %});"></div>
             <!-- Single Slide -->
-            <div class="single-hero-slide bg-img background-overlay" style="background-image: url({% static 'img/blog-img/bg_1.jpg' %});"></div>
+            <div class="single-hero-slide bg-img background-overlay" style="background-image: url({% static 'img/blog-img/bg1.jpg' %});"></div>
         </div>
 
         <!-- 지붕에 보이는 3개의 포스팅 제목 -->
@@ -107,17 +106,18 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="hero-post-slide">
-                          <!-- Single Slide -->
-                          {% for post in hit_posts %}
-                            <div class="single-slide d-flex align-items-center">
-                                <div class="post-number">
-                                    <p>{{ forloop.counter }}</p>
-                                </div>
-                                <div class="post-title">
-                                    <a href="{% url "blog:post_detail" post.id post.slug %}">{{ post.title }}</a>
-                                </div>
-                            </div>
-                          {% endfor %}
+                            <!-- Single Slide -->
+                            {% for post in hit_posts %}
+                              <div class="single-slide d-flex align-items-center">
+                                  <div class="post-number">
+                                      <p>{{ forloop.counter }}</p>
+                                  </div>
+                                  <div class="post-title">
+                                      <a href="{% url "blog:post_detail" post.id post.slug %}">{{ post.title }}</a>
+                                  </div>
+                              </div>
+                            {% endfor %}
+
                         </div>
                     </div>
                 </div>
@@ -140,6 +140,7 @@
                 <div class="col-12 col-md-8 col-lg-4">
                     <div class="post-sidebar-area wow fadeInUpBig" data-wow-delay="0.2s">
                         <!-- Widget Area -->
+                        <!-- 나중에 여기에다 광고를 넣자 -->
                         <!-- <div class="sidebar-widget-area">
                             <h5 class="title">About World</h5>
                             <div class="widget-content">
@@ -148,35 +149,38 @@
                         </div> -->
                         <!-- Widget Area -->
                         {% if hit_posts %}
-                        <div class="sidebar-widget-area">
-                            <h5 class="title">Top Stories</h5>
-                            <div class="widget-content">
-                              {% for post in hit_posts %}
-                                <div class="single-blog-post post-style-2 d-flex align-items-center widget-post">
-                                    <!-- Post Thumbnail -->
-                                    <div class="post-thumbnail">
-                                      {% if post.photo %}
-                                        {% thumbnail "100x100" post.photo as thumb %}
-                                        <a href="{% url "blog:post_detail" post.id post.slug %}">
-                                            <img src="{{ thumb.url }}" alt="">
-                                        </a>
-                                      {% else%}
-                                        <a href="{% url "blog:post_detail" post.id post.slug %}">
-                                          <img src="{% static 'img/blog-img/b11.jpg' %}" alt="">
-                                        </a>
-                                      {% endif %}
+                          <div class="sidebar-widget-area">
+                              <h5 class="title">Top Stories</h5>
+                              <div class="widget-content">
+                                  <!-- Single Blog Post -->
+                                  {% for post in hit_posts %}
+                                    <div class="single-blog-post post-style-2 d-flex align-items-center widget-post">
+                                        <!-- Post Thumbnail -->
+                                        <div class="post-thumbnail">
+                                          {% if post.photo %}
+                                            {% thumbnail "100x100" post.photo as thumb %}
+                                            <a href="{% url "blog:post_detail" post.id post.slug %}">
+                                                <img src="{{ thumb.url }}" alt="">
+                                            </a>
+                                          {% else%}
+                                            <a href="{% url "blog:post_detail" post.id post.slug %}">
+                                              <img src="{% static 'img/blog-img/b11.jpg' %}" alt="">
+                                            </a>
+                                          {% endif %}
+                                        </div>
+                                        <!-- Post Content -->
+                                        <div class="post-content">
+                                            <a href="{% url "blog:post_detail" post.id post.slug %}" class="headline">
+                                                <h5 class="mb-0">{{ post.title|truncatechars:50 }}</h5>
+                                            </a>
+                                        </div>
                                     </div>
-                                    <!-- Post Content -->
-                                    <div class="post-content">
-                                        <a href="{% url "blog:post_detail" post.id post.slug %}" class="headline">
-                                            <h5 class="mb-0">{{ post.title|truncatechars:50 }}</h5>
-                                        </a>
-                                    </div>
-                                </div>
-                              {% endfor %}
-                            </div>
-                        </div>
+                                  {% endfor %}
+
+                              </div>
+                          </div>
                         {% endif %}
+
                         <!-- Widget Area -->
                         <!-- <div class="sidebar-widget-area">
                             <h5 class="title">Stay Connected</h5>
@@ -192,6 +196,7 @@
                             </div>
                         </div> -->
                         <!-- Widget Area -->
+
                         <!-- <div class="sidebar-widget-area">
                             <h5 class="title">Today’s Pick</h5>
                             <div class="widget-content">

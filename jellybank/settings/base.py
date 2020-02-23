@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'imagekit',
     'disqus',
     'django.contrib.sites',
+    'django.contrib.sitemaps',
     'storages',
 ]
 

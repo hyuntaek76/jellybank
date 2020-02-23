@@ -1,0 +1,7 @@
+User-Agent: Googlebot
+Disallow: /admin/
+
+User-agent: Yeti
+Disallow: /
+
+http://www.jellybank.co.kr/sitemap.xml
