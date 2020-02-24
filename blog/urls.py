@@ -14,7 +14,7 @@ app_name = 'blog'
 urlpatterns = [
     path('', views.post_index, name='post_index'),
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='sitemap'),
-    path('.well-known/pki-validation/0951996431BB19E15491559D4B5A3F68.txt', TemplateView.as_view(template_name="0951996431BB19E15491559D4B5A3F68.txt", content_type="text/plain"), name="project_ssl_file"),
+    path('.well-known/pki-validation/1FB3E66D1EC1F60AB90807266BA7E218.txt', TemplateView.as_view(template_name="0951996431BB19E15491559D4B5A3F68.txt", content_type="text/plain"), name="project_ssl_file"),
     path('robots.txt', TemplateView.as_view(template_name="robots.txt", content_type="text/plain"), name="project_robots_file"),
     path('<int:pk>/<str:slug>/', views.post_detail, name='post_detail'),
     path('category/<str:category>/', views.post_list, name='post_list'),

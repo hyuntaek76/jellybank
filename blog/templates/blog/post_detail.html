@@ -6,11 +6,11 @@
 <title>젤리파파 | {{ post.title }}</title>
 <meta name="keywords" content="{{ post.meta_keyword }}">
 <meta name="description" content="{{ post.summary }}">
-<meta name="author" content="젤리파파">
+<meta name="author" content="젤리뱅">
 <meta name="robots" content="index,follow" />
 
 <meta property="og:type" content="website">
-<meta property="og:title" content="젤리파파 | {{ post.title }}">
+<meta property="og:title" content="젤리뱅크 | {{ post.title }}">
 <meta property="og:description" content="{{ post.summary }}">
 {% if post.photo %}
     {% thumbnail "290x158" post.photo as thumb %}
@@ -19,6 +19,17 @@
 <meta property="og:url" content="{{ post.get_absolute_url }}">
 {% endblock %}
 
+{% block style %}
+    <style>
+        .se-component {
+            padding: 0px 0px !important;
+        }
+
+        .se-component p {
+            color: black !important;
+        }
+    </style>
+{% endblock %}
 
 
 {% block top %}
