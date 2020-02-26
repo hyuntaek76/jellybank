@@ -14,9 +14,12 @@ from django.template import RequestContext
 def post_index(request):
     qs = Category.objects.filter(is_publish_ok=True).prefetch_related(Prefetch('post_set', queryset=Post.objects.filter(is_publish_ok=True)))
     hit_posts = Post.objects.filter(is_publish_ok=True).order_by('-hits')[:5]
+    site_info = SiteInfo.objects.get(id=1)
+
     return render(request, 'blog/post_index.html',{
         'categorys' : qs,
         'hit_posts' : hit_posts,
+        'site_info' : site_info,
     })
 
 
@@ -30,6 +33,7 @@ def post_list(request, category):
     hit_posts = Post.objects.filter(is_publish_ok=True).order_by('-hits')[:5]
     post = Category.objects.filter(category_name=category).prefetch_related('post_set')
     paginator = Paginator(post[0].post_set.filter(is_publish_ok=True), 6)
+    site_info = SiteInfo.objects.get(id=1)
 
     page = request.GET.get('page')
 
@@ -47,6 +51,7 @@ def post_list(request, category):
         'now_category' : category,
         'q' : q,
         'hit_posts' : hit_posts,
+        'site_info' : site_info,
     })
 
 
@@ -58,6 +63,7 @@ def search_post_list(request):
     paginator = Paginator(post, 6)
     page = request.GET.get('page')
     hit_posts = Post.objects.filter(is_publish_ok=True).order_by('-hits')[:5]
+    site_info = SiteInfo.objects.get(id=1)
     try:
         posts = paginator.page(page)
     except PageNotAnInteger:
@@ -71,6 +77,7 @@ def search_post_list(request):
         'posts' : posts,
         'page' : page,
         'hit_posts' : hit_posts,
+        'site_info' : site_info,
     })
 
 def post_detail(request, pk, slug):
@@ -79,11 +86,14 @@ def post_detail(request, pk, slug):
     Post.objects.filter(id=pk, slug=slug).update(hits = post.hits + 1)
     hit_posts = Post.objects.filter(is_publish_ok=True).order_by('-hits')[:5]
     related_qs = Post.objects.filter(category=post.category, is_publish_ok=True).exclude(id=pk)[:3]
+    site_info = SiteInfo.objects.get(id=1)
+
     return render(request, 'blog/post_detail.html',{
         'post': post,
         'related_posts': related_qs,
         'categorys' : categorys,
         'hit_posts' : hit_posts,
+        'site_info' : site_info,
 
     })
 
@@ -94,6 +104,8 @@ def tag_post_list(request, tag):
     hit_posts = Post.objects.filter(is_publish_ok=True).order_by('-hits')[:5]
     paginator = Paginator(post, 6)
     page = request.GET.get('page')
+    site_info = SiteInfo.objects.get(id=1)
+
     try:
         posts = paginator.page(page)
     except PageNotAnInteger:
@@ -107,6 +119,7 @@ def tag_post_list(request, tag):
         'posts' : posts,
         'page' : page,
         'hit_posts' : hit_posts,
+        'site_info' : site_info,
     })
 
 @login_required
@@ -238,6 +251,7 @@ def page_not_found_page(request, exception):
     post = Category.objects.all()
     paginator = Paginator(post[0].post_set.filter(is_publish_ok=True), 6)
     page = request.GET.get('page')
+    site_info = SiteInfo.objects.get(id=1)
 
     try:
         posts = paginator.page(page)
@@ -251,5 +265,6 @@ def page_not_found_page(request, exception):
         'page': page,
         'categorys' : categorys,
         'hit_posts' : hit_posts,
+        'site_info' :site_info,
     }) 
 
