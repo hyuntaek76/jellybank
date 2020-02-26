@@ -45,7 +45,7 @@ DATABASES = {
     }
 }
 
-DEBUG = True
+DEBUG = False
 
 
 STATIC_URL = '/static/'
