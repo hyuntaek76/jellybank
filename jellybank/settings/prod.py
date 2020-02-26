@@ -36,7 +36,9 @@ DATABASES = {
         'HOST': DB_HOST, # 데이테베이스 주소(IP)
         'PORT': '3306', # 데이터베이스 포트(보통은 3306)
         'OPTIONS': {
-            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
+            #'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO'",
+            'charset': 'utf8mb4'
         },
 
 

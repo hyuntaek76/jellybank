@@ -74,13 +74,11 @@ def search_post_list(request):
     })
 
 def post_detail(request, pk, slug):
-    print('post detail 호출')
     categorys = Category.objects.filter(is_publish_ok=True)
     post = get_object_or_404(Post, id=pk, slug=slug, is_publish_ok=True)
     Post.objects.filter(id=pk, slug=slug).update(hits = post.hits + 1)
     hit_posts = Post.objects.filter(is_publish_ok=True).order_by('-hits')[:5]
     related_qs = Post.objects.filter(category=post.category, is_publish_ok=True).exclude(id=pk)[:3]
-    print("여기도 호출되나?")
     return render(request, 'blog/post_detail.html',{
         'post': post,
         'related_posts': related_qs,
