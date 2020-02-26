@@ -211,7 +211,7 @@ def blog_crawling(request, category_id, blog_address):
 
         #블로그에서 사용된 태그를 가지고 온다.(new style, old style, more old style 모두 태그가 동일하다.
         tags = soup.select('div.post_tag > ul > li > a > span')
-        print("tags", tags)
+
 
         tag_list = []
         #태그가 한번도 사용된 적이 없으면 새로 생성하고 new_post에 태그를 추가한다.
