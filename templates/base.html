@@ -32,9 +32,14 @@
 
     {% endblock %}
 
-    {{ site_info.site_script_01 }}
-    {{ site_info.site_script_02 }}
-    {{ site_info.site_script_02 }}
+    {% for info in site_info %}
+
+        {{info.site_script_01 }}
+        {{info.site_script_02 }}
+        {{info.site_script_03 }}
+
+    {% endfor %}
+
 
 </head>
 
