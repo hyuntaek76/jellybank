@@ -46,11 +46,11 @@
                                                                 <h5>{{ post.title|truncatechars:50 }}</h5>
                                                             </a>
                                                             <a href="{% url "blog:post_detail" post.id post.slug %}" class="headline">
-                                                            <p>{{ post.content|striptags|safe|truncatechars:100 }}</p>
+                                                            <p>{{ post.content|safe|striptags|truncatechars:100 }}</p>
                                                             </a>
                                                             <!-- Post Meta -->
                                                             <div class="post-meta">
-                                                                <p><a href="#" class="post-author">Katy Liu</a> on <a href="#" class="post-date">Sep 29, 2017 at 9:48 am</a></p>
+                                                                <p>작성일 : {{ post.created_at }}</p>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -84,7 +84,7 @@
                                                         </a>
                                                         <!-- Post Meta -->
                                                         <div class="post-meta">
-                                                            <p><a href="#" class="post-author">Katy Liu</a> on <a href="#" class="post-date">Sep 29, 2017 at 9:48 am</a></p>
+                                                            <p>작성일 : {{ post.created_at }}</p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -136,7 +136,7 @@
                                                         </a>
                                                         <!-- Post Meta -->
                                                         <div class="post-meta">
-                                                            <p><a href="#" class="post-author">Katy Liu</a> on <a href="#" class="post-date">Sep 29, 2017 at 9:48 am</a></p>
+                                                            <p>작성일 : {{ post.created_at }}</p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -176,7 +176,7 @@
                                                                     </a>
                                                                     <!-- Post Meta -->
                                                                     <div class="post-meta">
-                                                                        <p><a href="#" class="post-author">Katy Liu</a> on <a href="#" class="post-date">Sep 29, 2017 at 9:48 am</a></p>
+                                                                        <p>작성일 : {{ post.created_at }}</p>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -214,7 +214,7 @@
                                                                     </a>
                                                                     <!-- Post Meta -->
                                                                     <div class="post-meta">
-                                                                        <p><a href="#" class="post-author">Katy Liu</a> on <a href="#" class="post-date">Sep 29, 2017 at 9:48 am</a></p>
+                                                                        <p>작성일 : {{ post.created_at }}</p>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -270,7 +270,7 @@
                                                             </a>
                                                             <!-- Post Meta -->
                                                             <div class="post-meta">
-                                                                <p><a href="#" class="post-author">Katy Liu</a> on <a href="#" class="post-date">Sep 29, 2017 at 9:48 am</a></p>
+                                                                <p>작성일 : {{ post.created_at }}</p>
                                                             </div>
                                                         </div>
                                                     </div>
