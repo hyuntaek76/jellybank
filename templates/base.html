@@ -34,9 +34,9 @@
 
     {% for info in site_info %}
 
-        {{info.site_script_01 }}
-        {{info.site_script_02 }}
-        {{info.site_script_03 }}
+    {{info.site_script_01|safe }}
+    {{info.site_script_02|safe }}
+    {{info.site_script_03|safe }}
 
     {% endfor %}
 
