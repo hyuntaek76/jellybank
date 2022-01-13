@@ -3,7 +3,7 @@ django-imagekit==4.0.2
 django-summernote==0.8.11.6
 django-taggit==1.2.0
 pilkit==2.0
-Pillow==7.0.0
+Pillow==9.0.0
 pymysql
 django-disqus
 requests
